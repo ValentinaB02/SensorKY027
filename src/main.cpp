@@ -18,7 +18,9 @@ void loop() {
   sensor1.deteccion();
   brightnessSensor1 = sensor1.setBrightness();
   sensor1.setBrightnessLed(brightnessSensor1);
+  delay (2000);
   sensor2.setBrightnessLed(255- brightnessSensor1);
+  delay (2000);
   //Otra aplicación puede emplear solo los métodos de deteccion con cada sensor para detectar las inclinaciones
   //en cada uno y encender o apagar sus LEDs  a modo de indicativo según corresponda.
 }
