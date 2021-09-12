@@ -1,15 +1,19 @@
 #include <Arduino.h>
 #include <SensorInclinacion.h>
+#include <SensorLlama.h>
 
 SensorInclinacion sensor1(9,8); //Creación objetos
 SensorInclinacion sensor2(6,7);
 int brightnessSensor1;
 int brightnessSensor2;
+int lecturaSensor3;
+SensorLlama sensor3(13,A0,10);
 
 void setup() {
   sensor1.inicializacion();
   sensor2.inicializacion();
   brightnessSensor1 = 0;
+  sensor3.initialization();
 }
 
 void loop() {
@@ -23,4 +27,8 @@ void loop() {
   delay (2000);
   //Otra aplicación puede emplear solo los métodos de deteccion con cada sensor para detectar las inclinaciones
   //en cada uno y encender o apagar sus LEDs  a modo de indicativo según corresponda.
+  sensor3.detection();
+  lecturaSensor3 = sensor3.measurement();
+  sensor3.LEDdetection(lecturaSensor3);
+  delay (1500);
 }
