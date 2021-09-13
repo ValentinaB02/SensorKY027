@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <SensorInclinacion.h>
 #include <SensorLlama.h>
+#include <ReceptorInfrarrojos.h>
+#include <TransmisorInfrarrojos.h>
 
 SensorInclinacion sensor1(9,8); //Creación objetos
 SensorInclinacion sensor2(6,7);
