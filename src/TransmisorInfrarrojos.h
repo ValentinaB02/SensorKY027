@@ -8,8 +8,8 @@ IRsend irsend;
 
 public:
 TransmisorInfrarrojos(IRsend irsend); //Constructor
-void inicializacionTI();
-void envio();
+IRsend inicializacionTI();
+IRsend envio(IRsend irsend);
 
 };
 

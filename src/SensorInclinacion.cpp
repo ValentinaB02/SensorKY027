@@ -18,6 +18,7 @@ SensorInclinacion::SensorInclinacion(int led, int sensor){ //Constructor
      if (estadoSensor == HIGH){
        digitalWrite (led, HIGH); //Se enciende el LED cuando detecta inclinación alguna
        brightness = 255;
+       Serial.print("Inclinación detectada");
        } else {
          digitalWrite (led, LOW);
          brightness = 0;

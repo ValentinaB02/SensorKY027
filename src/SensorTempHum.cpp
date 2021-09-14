@@ -10,7 +10,7 @@ SensorTempHum::SensorTempHum(int DHpin){ //Constructor
     pinMode(DHpin, OUTPUT);
   }
 
-  byte SensorTempHum::readdata(byte result) {
+  byte SensorTempHum::readdata() {
   byte i = 0;
   byte result = 0;
   for (i = 0; i < 8; i++) {
@@ -23,8 +23,7 @@ SensorTempHum::SensorTempHum(int DHpin){ //Constructor
   return result;
 }
 
-void start_test()
-{
+byte SensorTempHum::start_test(byte result) {
   digitalWrite(DHpin, LOW); //Pull down the bus to send the start signal
   delay(30); //The delay is greater than 18 ms so that DHT 11 can detect the start signal
   digitalWrite(DHpin, HIGH);
@@ -36,15 +35,23 @@ void start_test()
   if(digitalRead(DHpin) == LOW)
     delayMicroseconds(80); //DHT11 pulled up after the bus 80us to start sending data;
   for(int i = 0; i < 5; i++) //Receiving temperature and humidity data, check bits are not considered;
-    dat[i] = readdata();
+    dat[i] = result;
   pinMode(DHpin, OUTPUT);
   digitalWrite(DHpin, HIGH); //After the completion of a release of data bus, waiting for the host to start the next signal
 }
 
-  void SensorTempHum::humedad(){
-    
-  }
+void SensorTempHum::humedad(){    
+  Serial.print("Humidity sensor= ");
+  Serial.print(dat[0], DEC); //Displays the integer bits of humidity;
+  Serial.print('.');
+  Serial.print(dat[1], DEC); //Displays the decimal places of the humidity;
+  Serial.println('%');  
+}
 
-  void SensorTempHum::temperatura(){
-    
-  }
+void SensorTempHum::temperatura(){
+  Serial.print("Temperature sensor= ");
+  Serial.print(dat[2], DEC); //Displays the integer bits of temperature;
+  Serial.print('.');
+  Serial.print(dat[3], DEC); //Displays the decimal places of the temperature;
+  Serial.println('C');
+}

@@ -5,13 +5,12 @@
 class ReceptorInfrarrojos {
 private:
 int RECVPIN;
-IRrecv irrecv(RECVPIN); 
 decode_results results;
 
 public:
 ReceptorInfrarrojos(int RECVPIN); //Constructor
-void inicializacionRI();
-void resultados();
+IRrecv inicializacionRI();
+IRrecv resultados(IRrecv irrecv);
 
 };
 

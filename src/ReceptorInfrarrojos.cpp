@@ -1,5 +1,4 @@
 #include <IRremote.h>
-#include <IRremoteInt.h>
 #include "ReceptorInfrarrojos.h"
 #include <Arduino.h>
 
@@ -7,12 +6,14 @@ ReceptorInfrarrojos::ReceptorInfrarrojos(int RECVPIN){ //Constructor
     this->RECVPIN = RECVPIN;
   }
 
-  void ReceptorInfrarrojos::inicializacionRI(){
-    Serial.begin(9600);
+  IRrecv ReceptorInfrarrojos::inicializacionRI(){
+    Serial.begin(9600);   
+    IRrecv irrecv(RECVPIN); 
     irrecv.enableIRIn(); // Inicia el receptor
+    return irrecv;
   }
   
-  void ReceptorInfrarrojos::resultados(){
+  IRrecv ReceptorInfrarrojos::resultados(IRrecv irrecv){
     if (irrecv.decode(&results)) {
 		Serial.println(results.value, HEX); 
 		irrecv.resume();
